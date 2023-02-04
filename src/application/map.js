@@ -1,7 +1,7 @@
 /*global kakao*/
 import React, { useEffect } from 'react';
 
-const Location = () => {
+export default function Map() {
 	useEffect(() => {
 		let container = document.getElementById('map');
 		let options = {
@@ -13,9 +13,7 @@ const Location = () => {
 
 	return (
 		<div>
-			<div id='map' style={{ width: '500px', height: '400px' }}></div>
+			<div id='map' style={{ width: '1000px', height: '500px' }}></div>
 		</div>
 	);
-};
-
-export default Location;
+}
