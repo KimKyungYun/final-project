@@ -4,7 +4,8 @@ import { TodoistApi } from '@doist/todoist-api-typescript';
 const api = new TodoistApi('0d5eab937803121b4f948fc106f3c20672bc9da7');
 
 const initialState = {
-	place: [{ id: 0, name: '', latitude: 0.0, longtitude: 0.0 }],
+	place: [],
+	center: { x: 33.450701, y: 126.570667, level: 3 },
 };
 
 export const getTodo = createAsyncThunk('get/Todo', async () => {
@@ -23,17 +24,16 @@ export const addTodo = createAsyncThunk(
 );
 
 const rootReducers = createSlice({
-	name: 'myfavorite',
+	name: 'myPlace',
 	initialState,
 
 	reducers: {
-		addFavorite: (state, action) => {
-			state.push({
-				id: action.payload.id,
-				name: action.payload.name,
-				latitude: action.payload.latitude,
-				longtitude: action.payload.longtitude,
-			});
+		setPlace: (state, action) => {
+			state.place = action.payload;
+		},
+		setCenter: (state, action) => {
+			state.center.x = parseInt(action.payload.x);
+			state.center.y = parseInt(action.payload.y);
 		},
 	},
 	extraReducers: (builder) => {
@@ -46,5 +46,5 @@ const rootReducers = createSlice({
 			});
 	},
 });
-
+export const { setPlace, setCenter } = rootReducers.actions;
 export default rootReducers.reducer;

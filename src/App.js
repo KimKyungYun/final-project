@@ -1,14 +1,14 @@
 import React from 'react';
-import './App.css';
-import Map from './application/map';
-import Navbar from './application/navbar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MapMain from './pages/MapMain';
 
 function App() {
 	return (
-		<div className='App'>
-			<Navbar></Navbar>
-			<Map />
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path='/' element={<MapMain />}></Route>
+			</Routes>
+		</BrowserRouter>
 	);
 }
 
