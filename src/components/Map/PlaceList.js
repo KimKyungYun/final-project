@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
-import { setCenter } from '../app/rootReducers';
+import { setCenter } from '../../app/rootReducers';
 
 export default function PlaceList() {
 	const Places = useSelector((state) => state.Map.place);
 	const dispatch = useDispatch();
 
-	const temp = (val) => {
-		console.log(val);
-	};
 	return (
 		<div key='list' id='result-list' className='search'>
 			{Places.map((item, i) => (

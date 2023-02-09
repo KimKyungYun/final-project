@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TodoistApi } from '@doist/todoist-api-typescript';
 
 const api = new TodoistApi('0d5eab937803121b4f948fc106f3c20672bc9da7');
-
 const initialState = {
+	input: [],
+	todos: [],
 	place: [],
 	center: { x: 33.450701, y: 126.570667, level: 3 },
 };
@@ -22,6 +23,10 @@ export const addTodo = createAsyncThunk(
 		return res;
 	}
 );
+export const deleteTodo = createAsyncThunk('delete/Todo', async ({ id }) => {
+	const res = await api.deleteTask(id);
+	return res;
+});
 
 const rootReducers = createSlice({
 	name: 'myPlace',
@@ -35,6 +40,9 @@ const rootReducers = createSlice({
 			state.center.x = parseInt(action.payload.x);
 			state.center.y = parseInt(action.payload.y);
 		},
+		removeToDo: (state, action) => {
+			state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -43,8 +51,11 @@ const rootReducers = createSlice({
 			})
 			.addCase(addTodo.fulfilled, (state, action) => {
 				state.todos.push(action.payload);
+			})
+			.addCase(deleteTodo.fulfilled, (state, action) => {
+				state.todos = state.todos.filter((todo) => todo.id !== action.payload);
 			});
 	},
 });
-export const { setPlace, setCenter } = rootReducers.actions;
+export const { setPlace, setCenter, removeToDo } = rootReducers.actions;
 export default rootReducers.reducer;
