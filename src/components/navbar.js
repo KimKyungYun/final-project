@@ -26,31 +26,36 @@ export default function SearchAppBar() {
 							Todo With Place
 						</Typography>
 					</a>
-					<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-						<Typography
-							id='title'
-							variant='h6'
-							noWrap
-							component='div'
-							sx={{
-								color: '#9DA039',
-								display: { xs: 'none', sm: 'block' },
-							}}
-						>
-							Map
-						</Typography>
-						<Typography
-							id='title'
-							variant='h6'
-							noWrap
-							component='div'
-							sx={{
-								color: '#9DA039',
-								display: { xs: 'none', sm: 'block' },
-							}}
-						>
-							Map
-						</Typography>
+					<Box sx={{ display: 'flex' }}>
+						<a href='/map'>
+							<Typography
+								id='title'
+								variant='h6'
+								noWrap
+								component='div'
+								sx={{
+									color: '#9DA039',
+									display: { xs: 'none', sm: 'block' },
+								}}
+							>
+								Map
+							</Typography>
+						</a>
+
+						<a href='/'>
+							<Typography
+								id='title'
+								variant='h6'
+								noWrap
+								component='div'
+								sx={{
+									color: '#9DA039',
+									display: { xs: 'none', sm: 'block' },
+								}}
+							>
+								Todo
+							</Typography>
+						</a>
 					</Box>
 				</Toolbar>
 			</AppBar>

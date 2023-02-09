@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import '../style/Style.css';
 import Navbar from '../components/navbar';
-import SearchMap from '../components/SearchMap';
-import MapContainer from '../components/MapContainer';
-import PlaceList from '../components/PlaceList';
+import SearchMap from '../components/Map/SearchMap';
+import MapContainer from '../components/Map/MapContainer';
+import PlaceList from '../components/Map/PlaceList';
 import { useSelector } from 'react-redux';
 
 export default function MapMain() {

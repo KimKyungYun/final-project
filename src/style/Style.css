@@ -22,7 +22,7 @@ a {
 #map-container {
 	position: absolute;
 	right: 0;
-	top: 8%;
+	top: 64px;
 	width: 70%;
 }
 #result-list {

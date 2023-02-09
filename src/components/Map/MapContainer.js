@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import '../style/Style.css';
-import { setPlace, setCenter } from '../app/rootReducers';
+import '../../style/Style.css';
+import { setPlace } from '../../app/rootReducers';
 import { useDispatch } from 'react-redux';
 const { kakao } = window;
 
@@ -82,6 +82,11 @@ const MapContainer = ({ searchPlace, x, y }) => {
 				);
 				infowindow.open(map, marker);
 			});
+		}
+		function setCenter(x, y) {
+			var moveLatLon = new kakao.maps.LatLng(x, y);
+			// 지도 중심을 이동 시킵니다
+			map.setCenter(moveLatLon);
 		}
 	}, [searchPlace, dispatch, x, y]);
 
