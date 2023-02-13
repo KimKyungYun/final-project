@@ -1,15 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MapMain from './pages/MapMain';
-import InputTodo from './components/Todo/InputTodo';
-import TodoMain from './pages/TodoMain';
-
+import GoogleMap from './pages/GoogleMap';
+import Introduce from './pages/Home';
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/map' element={<MapMain />}></Route>
-				<Route path='/' element={<TodoMain />}></Route>
+				<Route path='/' element={<GoogleMap />}></Route>
+				<Route path='/main' element={<Introduce />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
