@@ -25,6 +25,19 @@ a {
 	top: 64px;
 	width: 70%;
 }
+#google-map {
+	height: 100vh;
+}
+#auto-complete {
+	z-index: 5;
+	position: absolute;
+	top: 18%;
+}
+#auto-complete input {
+	border: 2px solid #ebdd47;
+	border-radius: 10px;
+}
+
 #result-list {
 	border: 1px solid #ebdd47;
 	height: 85vh;
