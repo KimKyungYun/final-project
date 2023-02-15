@@ -1,55 +1,42 @@
 import * as React from 'react';
 import '../style/Style.css';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import PlaceAutoComplete from './Map/PlaceAutocomplete';
+import styled from 'styled-components';
 
-export default function SearchAppBar({ setCenter }) {
+const NavMain = styled.div`
+	font-family: 'PuradakGentleGothicR';
+	z-index: 20;
+	height: 10vh;
+	background-color: #fef01b;
+	display: flex;
+	justify-content: space-between;
+	box-shadow:3px 3px 3px rgba(0, 0, 0, 0.3);
+
+	align-items: center;
+	text-align: center;
+	a{
+		color:black;
+		}
+	}
+	h2 {
+		margin-left: 3%;
+		font-weight: bold;
+		font-size: 40px;
+	}
+	h4 {
+		margin-right:3%;
+		font-size:20px;
+	}
+`;
+export default function Navbar() {
 	return (
-		<Box>
-			<AppBar position='static'>
-				<Toolbar
-					sx={{
-						backgroundColor: '#fef01b',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-					}}
-				>
-					<a href='/'>
-						<Typography
-							id='title'
-							variant='h5'
-							noWrap
-							component='div'
-							sx={{
-								color: 'black',
-								display: { xs: 'none', sm: 'block' },
-							}}
-						>
-							Todo With Place
-						</Typography>
-					</a>
-					<PlaceAutoComplete setCenter={setCenter} />
-					<Box sx={{ display: 'flex' }}>
-						<a href='/'>
-							<Typography
-								id='title'
-								variant='h6'
-								noWrap
-								component='div'
-								sx={{
-									color: '#9DA039',
-									display: { xs: 'none', sm: 'block' },
-								}}
-							>
-								Map
-							</Typography>
-						</a>
-					</Box>
-				</Toolbar>
-			</AppBar>
-		</Box>
+		<NavMain>
+			<h2>
+				<a href='/'>지도닭</a>
+			</h2>
+
+			<h4>
+				<a href='/map'>지도</a>
+			</h4>
+		</NavMain>
 	);
 }
