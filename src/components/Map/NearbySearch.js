@@ -1,32 +1,12 @@
 import styled from 'styled-components';
-const SearchMain = styled('div')`
-	position: absolute;
-	z-index: 10;
-	display: flex;
-	flex-direction: column;
-	right: 1%;
-	top: 20%;
-`;
-const Button = styled('button')`
-	background-color: white;
-	border: none;
-	margin: 5px;
-	border-radius: 20px;
-	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-	&:hover {
-		background-color: #d8d8d8;
-	}
-	&:active {
-		box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-		transform: translateY(4px);
-	}
-`;
+import { SearchMain, Button } from './NearbySearch.Style';
+import { cafe, restaurant, shopping, gym } from '../../asset/MarkerIcons.js';
 export default function NearbySearch({
 	lat,
 	lng,
-	markerLocation,
 	setMarkerLocation,
-	setMarkerInformation,
+	setDetailOpen,
+	setMarkerIcon,
 }) {
 	const search = (type) => {
 		const Http = new XMLHttpRequest();
@@ -46,7 +26,7 @@ export default function NearbySearch({
 			if (Http.readyState === 4 && Http.status === 200) {
 				const text = JSON.parse(Http.responseText).results;
 				setMarkerLocation(text);
-				// locationInformation(text[0]);
+				setDetailOpen(true);
 				console.log(text);
 			}
 		};
@@ -54,10 +34,38 @@ export default function NearbySearch({
 
 	return (
 		<SearchMain>
-			<Button onClick={() => search('cafe')}>카페</Button>
-			<Button onClick={() => search('restaurant')}>식당</Button>
-			<Button onClick={() => search('shopping_mall')}>쇼핑</Button>
-			<Button onClick={() => search('gym')}>헬스장</Button>
+			<Button
+				onClick={() => {
+					setMarkerIcon(cafe);
+					search('cafe');
+				}}
+			>
+				카페
+			</Button>
+			<Button
+				onClick={() => {
+					setMarkerIcon(restaurant);
+					search('restaurant');
+				}}
+			>
+				식당
+			</Button>
+			<Button
+				onClick={() => {
+					setMarkerIcon(shopping);
+					search('shopping_mall');
+				}}
+			>
+				쇼핑
+			</Button>
+			<Button
+				onClick={() => {
+					setMarkerIcon(gym);
+					search('gym');
+				}}
+			>
+				헬스장
+			</Button>
 		</SearchMain>
 	);
 }

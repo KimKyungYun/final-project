@@ -1,27 +1,23 @@
 import { useState, useCallback, memo } from 'react';
-import {
-	GoogleMap,
-	useJsApiLoader,
-	Marker,
-	InfoWindow,
-} from '@react-google-maps/api';
-import { useRef } from 'react';
-const google = window.google;
+import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
+import { DEFAULT } from '../../asset/MarkerIcons.js';
+
 const containerStyle = {
 	width: '100%',
-	height: '91%',
+	height: '90vh',
+	position: 'absolute',
 };
 
-function Map({ location, markerLocation }) {
-	const [locationInfo, setLocationInfo] = useState();
+function Map({
+	location,
+	setLocation,
+	markerLocation,
+	setMap,
+	setDetailOpen,
+	markerIcon,
+}) {
 	const [activeMarker, setActiveMarker] = useState(null);
-	const [markerClicked, setMarkerClicked] = useState(false);
-
-	const { isLoaded } = useJsApiLoader({
-		id: 'google-map-script',
-		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-	});
-	const [map, setMap] = useState(null);
+	const [markerClicked, setMarkerClicked] = useState(true);
 
 	const onLoad = useCallback(function callback(map) {
 		setMap(map);
@@ -38,48 +34,57 @@ function Map({ location, markerLocation }) {
 		setActiveMarker(marker);
 	};
 
-	return isLoaded ? (
+	return (
 		<GoogleMap
+			position='static'
 			mapContainerStyle={containerStyle}
 			onLoad={onLoad}
 			center={{ lat: location.lat, lng: location.lng }}
 			zoom={location.zoom}
 			onUnmount={onUnmount}
-			onClick={() => setActiveMarker(null)}
+			onClick={() => {
+				setActiveMarker(null);
+				setMarkerClicked(false);
+			}}
 		>
 			{/* Child components, such as markers, info windows, etc. */}
-			{/* <NearbySearch></NearbySearch> */}
 			{markerLocation &&
 				markerLocation.map((location) => (
 					<Marker
 						key={location.place_id}
 						position={location.geometry.location}
+						icon={{
+							path: markerIcon ? markerIcon : DEFAULT,
+							fillColor: 'yellow',
+							fillOpacity: 0.9,
+							scale: 1.5,
+							strokeColor: 'orange',
+							strokeWeight: 2,
+						}}
 						onClick={() => {
-							setActiveMarker(null);
+							setMarkerClicked(!markerClicked);
 							handleActiveMarker(location.place_id);
-							console.log(activeMarker, location.place_id);
 						}}
 					>
-						{activeMarker === location.place_id ? (
-							<InfoWindow onCloseClick={() => setActiveMarker(null)}>
+						{activeMarker == location.place_id && !markerClicked ? (
+							<InfoWindow
+								onCloseClick={() => {
+									setMarkerClicked(false);
+								}}
+							>
 								<div>
-									<img src={location.icon} alt='icon' />
+									{/* <img src={location.photos.photo_reference} alt='' /> */}
 									<h4>{location.name}</h4>
 									<h5>{location.rating ? location.rating : null}</h5>
 									<span>{location.formatted_address}</span>
-									<button
-										onClick={() => console.log(activeMarker, location.place_id)}
-									>
-										bt
-									</button>
+									<button onClick={() => setDetailOpen(true)}>상세정보</button>
 								</div>
 							</InfoWindow>
-						) : undefined}
+						) : null}
 					</Marker>
 				))}
+			) ;
 		</GoogleMap>
-	) : (
-		<></>
 	);
 }
 
