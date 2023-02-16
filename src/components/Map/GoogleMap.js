@@ -10,11 +10,11 @@ const containerStyle = {
 
 function Map({
 	location,
-	setLocation,
 	markerLocation,
 	setMap,
 	setDetailOpen,
 	markerIcon,
+	mapRef,
 }) {
 	const [activeMarker, setActiveMarker] = useState(null);
 	const [markerClicked, setMarkerClicked] = useState(true);
@@ -36,6 +36,7 @@ function Map({
 
 	return (
 		<GoogleMap
+			ref={mapRef}
 			position='static'
 			mapContainerStyle={containerStyle}
 			onLoad={onLoad}
@@ -51,6 +52,7 @@ function Map({
 			{markerLocation &&
 				markerLocation.map((location) => (
 					<Marker
+						animation={window.google.maps.Animation.DROP}
 						key={location.place_id}
 						position={location.geometry.location}
 						icon={{

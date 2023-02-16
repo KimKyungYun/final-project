@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { SearchMain, Button } from './NearbySearch.Style';
 import { cafe, restaurant, shopping, gym } from '../../asset/MarkerIcons.js';
 export default function NearbySearch({
@@ -7,29 +6,25 @@ export default function NearbySearch({
 	setMarkerLocation,
 	setDetailOpen,
 	setMarkerIcon,
+	mapRef,
 }) {
-	const search = (type) => {
-		const Http = new XMLHttpRequest();
-		const url =
-			'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' +
-			lat +
-			',' +
-			lng +
-			'&radius=1000&type=' +
-			type +
-			'&key=' +
-			process.env.REACT_APP_GOOGLE_MAP_API_KEY;
+	const nearbySearch = (type) => {
+		const position = new window.google.maps.LatLng(lat, lng);
 
-		Http.open('GET', url);
-		Http.send();
-		Http.onreadystatechange = (e) => {
-			if (Http.readyState === 4 && Http.status === 200) {
-				const text = JSON.parse(Http.responseText).results;
-				setMarkerLocation(text);
-				setDetailOpen(true);
-				console.log(text);
-			}
+		const map = new window.google.maps.Map(mapRef.current, {
+			center: position,
+			zoom: 16,
+		});
+		const request = {
+			location: position,
+			radius: '1000',
+			type: [type],
 		};
+		const service = new window.google.maps.places.PlacesService(map);
+		service.nearbySearch(request, (text) => {
+			setMarkerLocation(text);
+			setDetailOpen(true);
+		});
 	};
 
 	return (
@@ -37,7 +32,7 @@ export default function NearbySearch({
 			<Button
 				onClick={() => {
 					setMarkerIcon(cafe);
-					search('cafe');
+					nearbySearch('cafe');
 				}}
 			>
 				카페
@@ -45,7 +40,7 @@ export default function NearbySearch({
 			<Button
 				onClick={() => {
 					setMarkerIcon(restaurant);
-					search('restaurant');
+					nearbySearch('restaurant');
 				}}
 			>
 				식당
@@ -53,7 +48,7 @@ export default function NearbySearch({
 			<Button
 				onClick={() => {
 					setMarkerIcon(shopping);
-					search('shopping_mall');
+					nearbySearch('shopping_mall');
 				}}
 			>
 				쇼핑
@@ -61,7 +56,7 @@ export default function NearbySearch({
 			<Button
 				onClick={() => {
 					setMarkerIcon(gym);
-					search('gym');
+					nearbySearch('gym');
 				}}
 			>
 				헬스장
