@@ -3,11 +3,13 @@ import { LoadScript } from '@react-google-maps/api';
 import Map from '../components/Map/GoogleMap';
 import NearbySearch from '../components/Map/NearbySearch';
 import '../style/Style.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import PlaceAutoComplete from '../components/Map/PlaceAutocomplete';
 import SearchList from '../components/Map/SearchList';
+import MapDetail from '../components/Map/MapDetail';
 
 export default function GoogleMap() {
+	const mapRef = useRef();
 	const [map, setMap] = useState(null);
 	const [detailOpen, setDetailOpen] = useState(null);
 	const [location, setLocation] = useState({
@@ -17,6 +19,9 @@ export default function GoogleMap() {
 	});
 	const [markerLocation, setMarkerLocation] = useState(null);
 	const [markerIcon, setMarkerIcon] = useState(null);
+	const [listDetailOpen, setListDetailOpen] = useState(false);
+	const [selectedList, setSelectedList] = useState(null);
+
 	const setCenter = (value, marker) => {
 		setLocation(value);
 		setMarkerLocation(marker);
@@ -27,6 +32,14 @@ export default function GoogleMap() {
 			libraries={['places']}
 		>
 			<Navbar />
+			<Map
+				location={location}
+				markerLocation={markerLocation}
+				setMap={setMap}
+				setDetailOpen={setDetailOpen}
+				markerIcon={markerIcon}
+				mapRef={mapRef}
+			/>
 			<PlaceAutoComplete
 				setCenter={setCenter}
 				setMarkerLocation={setMarkerLocation}
@@ -40,19 +53,22 @@ export default function GoogleMap() {
 				setMarkerLocation={setMarkerLocation}
 				setDetailOpen={setDetailOpen}
 				setMarkerIcon={setMarkerIcon}
+				mapRef={mapRef}
 			/>
 			<SearchList
 				markerLocation={markerLocation}
 				detailOpen={detailOpen}
 				setDetailOpen={setDetailOpen}
+				setListDetailOpen={setListDetailOpen}
+				setSelectedList={setSelectedList}
+				mapRef={mapRef}
 			/>
-			<Map
-				location={location}
-				setLocation={setLocation}
-				markerLocation={markerLocation}
-				setMap={setMap}
-				setDetailOpen={setDetailOpen}
-				markerIcon={markerIcon}
+			<MapDetail
+				listDetailOpen={listDetailOpen}
+				setListDetailOpen={setListDetailOpen}
+				selectedList={selectedList}
+				map={map}
+				mapRef={mapRef}
 			/>
 		</LoadScript>
 	);
