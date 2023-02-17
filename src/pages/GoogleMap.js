@@ -37,14 +37,16 @@ export default function GoogleMap() {
 				markerLocation={markerLocation}
 				setMap={setMap}
 				setDetailOpen={setDetailOpen}
+				setSelectedList={setSelectedList}
+				setListDetailOpen={setListDetailOpen}
 				markerIcon={markerIcon}
 				mapRef={mapRef}
 			/>
 			<PlaceAutoComplete
 				setCenter={setCenter}
-				setMarkerLocation={setMarkerLocation}
 				setDetailOpen={setDetailOpen}
-				map={map}
+				mapRef={mapRef}
+				setMarkerIcon
 			/>
 			<NearbySearch
 				lat={location.lat}
