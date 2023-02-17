@@ -1,6 +1,7 @@
 import * as React from 'react';
 import '../style/Style.css';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavMain = styled.div`
 	font-family: 'PuradakGentleGothicR';
@@ -31,11 +32,11 @@ export default function Navbar() {
 	return (
 		<NavMain>
 			<h2>
-				<a href={process.env.PUBLIC_URL + '/'}>지도닭</a>
+				<Link to='/'>지도닭</Link>
 			</h2>
 
 			<h4>
-				<a href={process.env.PUBLIC_URL + '/map'}>지도</a>
+				<Link to='/map'>지도</Link>
 			</h4>
 		</NavMain>
 	);

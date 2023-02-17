@@ -8,6 +8,7 @@ import cafe from '../asset/img/cafe2.png';
 import shopping from '../asset/img/shopping.png';
 import gym from '../asset/img/gym.png';
 import map from '../asset/img/map.png';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
 	const [pageNum, setPageNum] = useState(1);
@@ -56,12 +57,8 @@ export default function Home() {
 					<h1>위치를 원하시는 장소를 검색하신 후!</h1>
 					<h2>오른쪽에 원하시는 카테고리를 선택하시면!</h2>
 					<h3>주변 장소에 대한 정보를 알 수 있습니다!</h3>
-					<MapButton
-						onClick={() =>
-							(window.location.href = process.env.PUBLIC_URL + '/map')
-						}
-					>
-						Search!
+					<MapButton>
+						<Link to='/map'>Search!</Link>
 					</MapButton>
 				</div>
 				<Image src={map} alt='map' />
