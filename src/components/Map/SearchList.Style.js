@@ -7,6 +7,7 @@ export const DetailMain = styled.div`
 	z-index: 12;
 	background-color: white;
 	width: 25%;
+	justify-content: space-between;
 	height: 90vh;
 	left: ${(props) => (props.detailOpen ? '0%' : '-30%')};
 	overflow-y: scroll;
@@ -26,6 +27,7 @@ export const DetailSub = styled.div`
 	overflow: scroll;
 	display: flex;
 	align-items: center;
+	width: 100%;
 	&::-webkit-scrollbar {
 		width: 4px;
 	}

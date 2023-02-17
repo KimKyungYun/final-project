@@ -18,20 +18,20 @@ export const Page = styled.div`
 	transition: 2s;
 	scroll: none;
 	left: ${(props) =>
-		props.page == props.pageNum
+		props.page === props.pageNum
 			? '0%'
 			: props.pageNum > props.page
 			? '-100%'
 			: '100%'};
 
-	opacity: ${(props) => (props.page == props.pageNum ? '100' : '0')};
+	opacity: ${(props) => (props.page === props.pageNum ? '100' : '0')};
 `;
 export const PageButton = styled.button`
 	z-index: 15;
 	position: absolute;
 	height: 90vh;
-	left: ${(props) => (props.direction == 'left' ? '0%' : null)};
-	right: ${(props) => (props.direction == 'right' ? '0%' : null)};
+	left: ${(props) => (props.direction === 'left' ? '0%' : null)};
+	right: ${(props) => (props.direction === 'right' ? '0%' : null)};
 	background-color: transparent;
 	border: none;
 	font-size: 30px;

@@ -29,28 +29,28 @@ export default function Home() {
 					<h1>외식할 장소를 찾으신다구요?</h1>
 					<h3>배가 고프시다면 식당을!</h3>
 				</div>
-				<Image src={food} alt='' />
+				<Image src={food} alt='food' />
 			</Page>
 			<Page page={2} pageNum={pageNum}>
 				<div>
 					<h1>식사 후 커피를 찾으신다구요?</h1>
 					<h3>그렇다면 카페를!</h3>
 				</div>
-				<Image src={cafe} alt='' />
+				<Image src={cafe} alt='cafe' />
 			</Page>
 			<Page page={3} pageNum={pageNum}>
 				<div>
 					<h1>쇼핑을 하고싶으시다구요?</h1>
 					<h3>그렇다면 쇼핑을!</h3>
 				</div>
-				<Image src={shopping} alt='' />
+				<Image src={shopping} alt='shopping' />
 			</Page>
 			<Page page={4} pageNum={pageNum}>
 				<div>
 					<h1>운동이 하고싶으시다구요?</h1>
 					<h3>헬창이시라면 헬스장을!</h3>
 				</div>
-				<Image src={gym} alt='' />
+				<Image src={gym} alt='gym' />
 			</Page>
 			<Page page={5} pageNum={pageNum}>
 				<div>
@@ -61,7 +61,7 @@ export default function Home() {
 						Search!
 					</MapButton>
 				</div>
-				<Image src={map} alt='' />
+				<Image src={map} alt='map' />
 			</Page>
 			<PageButton direction='right' onClick={() => handlePage(pageNum + 1)}>
 				<img src={Right} />
