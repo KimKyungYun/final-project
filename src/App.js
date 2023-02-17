@@ -6,7 +6,7 @@ function App() {
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Routes>
-				<Route path='/' element={<Home />}></Route>
+				<Route exact path='/' element={<Home />}></Route>
 				<Route path='/map' element={<GoogleMap />}></Route>
 			</Routes>
 		</BrowserRouter>
