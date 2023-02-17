@@ -8,7 +8,7 @@ export const DetailOuter = styled.div`
 	z-index: 11;
 	background-color: white;
 	display: flex;
-	align-items: center;
+	align-items: left;
 	text-align: left;
 	padding-left: 3px;
 	flex-direction: column;
