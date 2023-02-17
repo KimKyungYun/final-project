@@ -8,7 +8,7 @@ export default function NearbySearch({
 	setMarkerIcon,
 	mapRef,
 }) {
-	const nearbySearch = (type) => {
+	const nearbySearch = async (type) => {
 		const position = new window.google.maps.LatLng(lat, lng);
 
 		const map = new window.google.maps.Map(mapRef.current, {

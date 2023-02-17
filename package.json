@@ -1,6 +1,6 @@
 {
 	"name": "final-project",
-	"homepage": "http://KimKyungYun.github.io/final-project",
+	"homepage": "https://KimKyungYun.github.io/final-project",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -53,8 +53,5 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"devDependencies": {
-		"gh-pages": "^5.0.0"
 	}
 }
