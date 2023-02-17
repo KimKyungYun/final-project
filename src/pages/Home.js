@@ -13,7 +13,6 @@ export default function Home() {
 	const [pageNum, setPageNum] = useState(1);
 	const handlePage = (num) => {
 		if (num > 5 || num < 1) {
-			console.log(num);
 			return;
 		}
 		setPageNum(num);
@@ -22,7 +21,7 @@ export default function Home() {
 		<OuterDiv>
 			<Navbar />
 			<PageButton direction='left' onClick={() => handlePage(pageNum - 1)}>
-				<img src={Left} />
+				<img src={Left} alt='left' />
 			</PageButton>
 			<Page page={1} pageNum={pageNum}>
 				<div>
@@ -64,7 +63,7 @@ export default function Home() {
 				<Image src={map} alt='map' />
 			</Page>
 			<PageButton direction='right' onClick={() => handlePage(pageNum + 1)}>
-				<img src={Right} />
+				<img src={Right} alt='right' />
 			</PageButton>
 		</OuterDiv>
 	);
