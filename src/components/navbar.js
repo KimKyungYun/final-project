@@ -31,11 +31,11 @@ export default function Navbar() {
 	return (
 		<NavMain>
 			<h2>
-				<a href='/'>지도닭</a>
+				<a href={process.env.PUBLIC_URL + '/'}>지도닭</a>
 			</h2>
 
 			<h4>
-				<a href='/map'>지도</a>
+				<a href={process.env.PUBLIC_URL + '/map'}>지도</a>
 			</h4>
 		</NavMain>
 	);
