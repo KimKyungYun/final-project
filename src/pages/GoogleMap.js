@@ -10,7 +10,6 @@ import MapDetail from '../components/Map/MapDetail';
 
 export default function GoogleMap() {
 	const mapRef = useRef();
-	const [map, setMap] = useState(null);
 	const [detailOpen, setDetailOpen] = useState(null);
 	const [location, setLocation] = useState({
 		lat: 37.5379868,
@@ -35,7 +34,6 @@ export default function GoogleMap() {
 			<Map
 				location={location}
 				markerLocation={markerLocation}
-				setMap={setMap}
 				setDetailOpen={setDetailOpen}
 				setSelectedList={setSelectedList}
 				setListDetailOpen={setListDetailOpen}
@@ -45,8 +43,7 @@ export default function GoogleMap() {
 			<PlaceAutoComplete
 				setCenter={setCenter}
 				setDetailOpen={setDetailOpen}
-				mapRef={mapRef}
-				setMarkerIcon
+				setMarkerIcon={setMarkerIcon}
 			/>
 			<NearbySearch
 				lat={location.lat}
@@ -69,8 +66,6 @@ export default function GoogleMap() {
 				listDetailOpen={listDetailOpen}
 				setListDetailOpen={setListDetailOpen}
 				selectedList={selectedList}
-				map={map}
-				mapRef={mapRef}
 			/>
 		</LoadScript>
 	);

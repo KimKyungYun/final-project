@@ -2,9 +2,7 @@ import { StandaloneSearchBox } from '@react-google-maps/api';
 import styled from 'styled-components';
 import Geocode from 'react-geocode';
 import './Geocoder';
-import { useState } from 'react';
 import { basic } from '../../asset/MarkerIcons.js';
-import { useEffect } from 'react';
 const Box = styled('div')`
 	position: absolute;
 	z-index: 10;
@@ -14,11 +12,8 @@ const Box = styled('div')`
 export default function PlaceAutoComplete({
 	setCenter,
 	setDetailOpen,
-	mapRef,
 	setMarkerIcon,
 }) {
-	let [id, setId] = useState();
-
 	const position = (val) => {
 		Geocode.fromAddress(val).then(
 			(response) => {

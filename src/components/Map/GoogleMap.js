@@ -1,6 +1,5 @@
-import { useState, useCallback, memo } from 'react';
+import { useState, memo } from 'react';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
-import { DEFAULT } from '../../asset/MarkerIcons.js';
 import styled from 'styled-components';
 
 const containerStyle = {
@@ -19,7 +18,6 @@ const DetailButton = styled.button`
 function Map({
 	location,
 	markerLocation,
-	setMap,
 	setDetailOpen,
 	setSelectedList,
 	setListDetailOpen,
@@ -28,14 +26,6 @@ function Map({
 }) {
 	const [activeMarker, setActiveMarker] = useState(null);
 	const [markerClicked, setMarkerClicked] = useState(true);
-
-	const onLoad = useCallback(function callback(map) {
-		setMap(map);
-	}, []);
-
-	const onUnmount = useCallback(function callback(map) {
-		setMap(null);
-	}, []);
 
 	const handleActiveMarker = (marker) => {
 		if (marker === activeMarker) {
@@ -49,10 +39,8 @@ function Map({
 			ref={mapRef}
 			position='static'
 			mapContainerStyle={containerStyle}
-			onLoad={onLoad}
 			center={{ lat: location.lat, lng: location.lng }}
 			zoom={location.zoom}
-			onUnmount={onUnmount}
 			onClick={() => {
 				setActiveMarker(null);
 				setMarkerClicked(false);
@@ -78,7 +66,7 @@ function Map({
 							handleActiveMarker(location.place_id);
 						}}
 					>
-						{activeMarker == location.place_id && !markerClicked ? (
+						{activeMarker === location.place_id && !markerClicked ? (
 							<InfoWindow
 								onCloseClick={() => {
 									setMarkerClicked(false);

@@ -40,16 +40,28 @@ export const DetailOuter = styled.div`
 			background-color: #d8d8d8;
 		}
 	}
-import '../../style/Style.css';
-
 `;
 export const DetailInnerTop = styled.div`
-	width: 100%;
-	height: 30%;
-	padding: 0px;
 	border-radius: 20px;
-	overflow: hidden;
 	img {
-		height: 100%;
+		width: 100%;
+	}
+`;
+export const ReviewOuter = styled.div`
+	width: 100%;
+	${'' /* display: none; */}
+`;
+export const Reviews = styled.div`
+	border-top: 1px solid silver;
+
+	h3 {
+		font-size: 15px;
+	}
+	h4 {
+		font-weight: none;
+		font-size: 13px;
+	}
+	h5 {
+		font-size: 14px;
 	}
 `;
