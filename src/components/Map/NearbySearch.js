@@ -19,6 +19,7 @@ export default function NearbySearch({
 			location: position,
 			radius: '1000',
 			type: [type],
+			fields: ['name', 'rating', 'formatted_phone_number', 'geometry'],
 		};
 		const service = new window.google.maps.places.PlacesService(map);
 		service.nearbySearch(request, (text) => {
