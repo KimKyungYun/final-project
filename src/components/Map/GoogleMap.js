@@ -1,18 +1,28 @@
 import { useState, useCallback, memo } from 'react';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import { DEFAULT } from '../../asset/MarkerIcons.js';
+import styled from 'styled-components';
 
 const containerStyle = {
 	width: '100%',
 	height: '90vh',
 	position: 'absolute',
 };
-
+const DetailButton = styled.button`
+	border-radius: 10px;
+	background-color: #2e2efe;
+	color: white;
+	&:active {
+		background-color: #819ff7;
+	}
+`;
 function Map({
 	location,
 	markerLocation,
 	setMap,
 	setDetailOpen,
+	setSelectedList,
+	setListDetailOpen,
 	markerIcon,
 	mapRef,
 }) {
@@ -56,7 +66,7 @@ function Map({
 						key={location.place_id}
 						position={location.geometry.location}
 						icon={{
-							path: markerIcon ? markerIcon : DEFAULT,
+							path: markerIcon,
 							fillColor: 'yellow',
 							fillOpacity: 0.9,
 							scale: 1.5,
@@ -77,9 +87,17 @@ function Map({
 								<div>
 									{/* <img src={location.photos.photo_reference} alt='' /> */}
 									<h4>{location.name}</h4>
-									<h5>{location.rating ? location.rating : null}</h5>
+									<h5>{location.vicinity ? location.vicinity : null}</h5>
 									<span>{location.formatted_address}</span>
-									<button onClick={() => setDetailOpen(true)}>상세정보</button>
+									<DetailButton
+										onClick={() => {
+											setSelectedList(location);
+											setListDetailOpen(true);
+											setDetailOpen(true);
+										}}
+									>
+										상세정보
+									</DetailButton>
 								</div>
 							</InfoWindow>
 						) : null}

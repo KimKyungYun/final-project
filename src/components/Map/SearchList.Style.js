@@ -23,9 +23,10 @@ export const DetailMain = styled.div`
 	}
 `;
 export const DetailSub = styled.div`
+	width: 100%;
 	border: none;
-	overflow: scroll;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	width: 100%;
 	&::-webkit-scrollbar {
@@ -53,11 +54,9 @@ export const CloseButton = styled.button`
 	}
 `;
 export const InfoContainer = styled.div`
-	width: 70%;
+	width: 100%;
 `;
 export const ImageContainer = styled.div`
-	display: flex;
-	align-items: center;
 	border: 1px siver solid;
 	border-radius: 10px;
 	overflow: hidden;
