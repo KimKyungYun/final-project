@@ -4,9 +4,9 @@ import GoogleMap from './pages/GoogleMap';
 import Home from './pages/Home';
 function App() {
 	return (
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
+		<BrowserRouter basename={window.location.pathname || ''}>
 			<Routes>
-				<Route exact path='/' element={<Home />}></Route>
+				<Route path='/' element={<Home />}></Route>
 				<Route path='/map' element={<GoogleMap />}></Route>
 			</Routes>
 		</BrowserRouter>
